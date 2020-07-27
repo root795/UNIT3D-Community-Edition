@@ -37,28 +37,14 @@ use Illuminate\Http\Request;
  */
 class ChatController extends Controller
 {
-    /**
-     * @var ChatRepository
-     */
-    private $chatRepository;
-
-    /**
-     * @var AuthManager
-     */
-    private $authManager;
-
-    public function __construct(ChatRepository $chatRepository, \Illuminate\Contracts\Auth\Factory $factory)
+    public function __construct(private ChatRepository $chatRepository, private \Illuminate\Contracts\Auth\Factory $authManager)
     {
-        $this->chatRepository = $chatRepository;
-        $this->authManager = $factory;
     }
-
     /* STATUSES */
     public function statuses()
     {
         return \response($this->chatRepository->statuses());
     }
-
     /* ECHOES */
     public function echoes()
     {
@@ -73,7 +59,6 @@ class ChatController extends Controller
 
         return UserEchoResource::collection($this->chatRepository->echoes($this->authManager->user()->id));
     }
-
     /* AUDIBLES */
     public function audibles()
     {
@@ -89,36 +74,30 @@ class ChatController extends Controller
 
         return UserAudibleResource::collection($this->chatRepository->audibles($this->authManager->user()->id));
     }
-
     /* BOTS */
     public function bots()
     {
         return BotResource::collection($this->chatRepository->bots());
     }
-
     /* ROOMS */
     public function rooms()
     {
         return ChatRoomResource::collection($this->chatRepository->rooms());
     }
-
     public function config()
     {
         return \response($this->chatRepository->config());
     }
-
     /* MESSAGES */
     public function messages($room_id)
     {
         return ChatMessageResource::collection($this->chatRepository->messages($room_id));
     }
-
     /* MESSAGES */
     public function privateMessages($target_id)
     {
         return ChatMessageResource::collection($this->chatRepository->privateMessages($this->authManager->user()->id, $target_id));
     }
-
     /* MESSAGES */
     public function botMessages($bot_id)
     {
@@ -132,7 +111,6 @@ class ChatController extends Controller
 
         return ChatMessageResource::collection($this->chatRepository->botMessages($this->authManager->user()->id, $bot->id));
     }
-
     public function createMessage(Request $request)
     {
         $user = $this->authManager->user();
@@ -356,14 +334,12 @@ class ChatController extends Controller
 
         return \response('success');
     }
-
     public function deleteMessage($id)
     {
         $this->chatRepository->deleteMessage($id);
 
         return \response('success');
     }
-
     public function deleteRoomEcho(Request $request, $user_id)
     {
         $echo = UserEcho::where('user_id', '=', $user_id)->where('room_id', '=', $request->input('room_id'))->firstOrFail();
@@ -385,7 +361,6 @@ class ChatController extends Controller
 
         return \response($user);
     }
-
     public function deleteTargetEcho(Request $request, $user_id)
     {
         $echo = UserEcho::where('user_id', '=', $user_id)->where('target_id', '=', $request->input('target_id'))->firstOrFail();
@@ -400,7 +375,6 @@ class ChatController extends Controller
 
         return \response($user);
     }
-
     public function deleteBotEcho(Request $request, $user_id)
     {
         $echo = UserEcho::where('user_id', '=', $user_id)->where('bot_id', '=', $request->input('bot_id'))->firstOrFail();
@@ -415,7 +389,6 @@ class ChatController extends Controller
 
         return \response($user);
     }
-
     public function toggleRoomAudible(Request $request, $user_id)
     {
         $echo = UserAudible::where('user_id', '=', $user_id)->where('room_id', '=', $request->input('room_id'))->firstOrFail();
@@ -431,7 +404,6 @@ class ChatController extends Controller
 
         return \response($user);
     }
-
     public function toggleTargetAudible(Request $request, $user_id)
     {
         $echo = UserAudible::where('user_id', '=', $user_id)->where('target_id', '=', $request->input('target_id'))->firstOrFail();
@@ -447,7 +419,6 @@ class ChatController extends Controller
 
         return \response($user);
     }
-
     public function toggleBotAudible(Request $request, $user_id)
     {
         $echo = UserAudible::where('user_id', '=', $user_id)->where('bot_id', '=', $request->input('bot_id'))->firstOrFail();
@@ -463,7 +434,6 @@ class ChatController extends Controller
 
         return \response($user);
     }
-
     /* USERS */
     public function updateUserChatStatus(Request $request, $id)
     {
@@ -483,7 +453,6 @@ class ChatController extends Controller
 
         return \response($user);
     }
-
     public function updateUserRoom(Request $request, $id)
     {
         $user = User::with(['chatStatus', 'chatroom', 'group', 'echoes'])->findOrFail($id);
@@ -521,14 +490,12 @@ class ChatController extends Controller
 
         return \response($user);
     }
-
     public function updateUserTarget($id)
     {
         $user = User::with(['chatStatus', 'chatroom', 'group', 'echoes'])->findOrFail($id);
 
         return \response($user);
     }
-
     public function updateBotTarget($id)
     {
         $user = User::with(['chatStatus', 'chatroom', 'group', 'echoes'])->findOrFail($id);

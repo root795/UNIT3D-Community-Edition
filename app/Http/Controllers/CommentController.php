@@ -42,27 +42,14 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
     /**
-     * @var TaggedUserRepository
-     */
-    private $taggedUserRepository;
-
-    /**
-     * @var ChatRepository
-     */
-    private $chatRepository;
-
-    /**
      * CommentController Constructor.
      *
      * @param \App\Repositories\TaggedUserRepository $taggedUserRepository
      * @param \App\Repositories\ChatRepository       $chatRepository
      */
-    public function __construct(TaggedUserRepository $taggedUserRepository, ChatRepository $chatRepository)
+    public function __construct(private TaggedUserRepository $taggedUserRepository, private ChatRepository $chatRepository)
     {
-        $this->taggedUserRepository = $taggedUserRepository;
-        $this->chatRepository = $chatRepository;
     }
-
     /**
      * Store A New Comment To A Article.
      *
@@ -153,7 +140,6 @@ class CommentController extends Controller
         return \redirect()->route('articles.show', ['id' => $article->id])
             ->withSuccess('Your Comment Has Been Added!');
     }
-
     /**
      * Store A New Comment To A Playlist.
      *
@@ -244,7 +230,6 @@ class CommentController extends Controller
         return \redirect()->route('playlists.show', ['id' => $playlist->id, 'hash' => '#comments'])
             ->withSuccess('Your Comment Has Been Added!');
     }
-
     /**
      * Store A New Comment To A Torrent.
      *
@@ -339,7 +324,6 @@ class CommentController extends Controller
         return \redirect()->route('torrent', ['id' => $torrent->id, 'hash' => '#comments'])
             ->withSuccess('Your Comment Has Been Added!');
     }
-
     /**
      * Store A New Comment To A Request.
      *
@@ -434,7 +418,6 @@ class CommentController extends Controller
         return \redirect()->route('request', ['id' => $tr->id, 'hash' => '#comments'])
             ->withSuccess('Your Comment Has Been Added!');
     }
-
     /**
      * Store A New Comment To A Torrent Via Quick Thanks.
      *
@@ -515,7 +498,6 @@ class CommentController extends Controller
         return \redirect()->route('torrent', ['id' => $torrent->id])
             ->withSuccess('Your Comment Has Been Added!');
     }
-
     /**
      * Edit A Comment.
      *
@@ -546,7 +528,6 @@ class CommentController extends Controller
 
         return \redirect()->back()->withSuccess('Comment Has Been Edited.');
     }
-
     /**
      * Delete A Comment.
      *

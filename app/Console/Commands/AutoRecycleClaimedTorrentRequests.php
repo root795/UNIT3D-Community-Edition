@@ -38,16 +38,9 @@ class AutoRecycleClaimedTorrentRequests extends Command
      */
     protected $description = 'Recycle Torrent Requests That Wwere Claimed But Not Filled Within 7 Days.';
 
-    /**
-     * @var ChatRepository
-     */
-    private $chatRepository;
-
-    public function __construct(ChatRepository $chatRepository)
+    public function __construct(private ChatRepository $chatRepository)
     {
         parent::__construct();
-
-        $this->chatRepository = $chatRepository;
     }
 
     /**

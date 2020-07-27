@@ -25,20 +25,13 @@ use Illuminate\Http\Request;
 class ChatRoomController extends Controller
 {
     /**
-     * @var ChatRepository
-     */
-    private $chatRepository;
-
-    /**
      * ChatController Constructor.
      *
      * @param \App\Repositories\ChatRepository $chatRepository
      */
-    public function __construct(ChatRepository $chatRepository)
+    public function __construct(private ChatRepository $chatRepository)
     {
-        $this->chatRepository = $chatRepository;
     }
-
     /**
      * Display All Chat Rooms.
      *
@@ -52,7 +45,6 @@ class ChatRoomController extends Controller
             'chatrooms'    => $chatrooms,
         ]);
     }
-
     /**
      * Store A New Chatroom.
      *
@@ -78,7 +70,6 @@ class ChatRoomController extends Controller
         return \redirect()->route('staff.rooms.index')
             ->withSuccess('Chatroom Successfully Added');
     }
-
     /**
      * Update A Chatroom.
      *
@@ -105,7 +96,6 @@ class ChatRoomController extends Controller
         return \redirect()->route('staff.rooms.index')
             ->withSuccess('Chatroom Successfully Modified');
     }
-
     /**
      * Delete A Chatroom.
      *

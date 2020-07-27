@@ -21,14 +21,11 @@ abstract class Client
 
     protected $apiUrl;
 
-    protected $apiKey;
-
     protected $apiSecure = false;
 
-    public function __construct($apiUrl, $apiKey = null)
+    public function __construct($apiUrl, protected $apiKey = null)
     {
         $this->apiUrl = ($this->apiSecure ? 'https://' : 'http://').$apiUrl;
-        $this->apiKey = $apiKey;
         $this->guzzle = new GuzzleClient();
     }
 

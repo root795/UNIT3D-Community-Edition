@@ -27,20 +27,13 @@ use Illuminate\Http\Request;
 class RssController extends Controller
 {
     /**
-     * @var TorrentFacetedRepository
-     */
-    private $torrentFacetedRepository;
-
-    /**
      * RssController Constructor.
      *
      * @param \App\Repositories\TorrentFacetedRepository $torrentFacetedRepository
      */
-    public function __construct(TorrentFacetedRepository $torrentFacetedRepository)
+    public function __construct(private TorrentFacetedRepository $torrentFacetedRepository)
     {
-        $this->torrentFacetedRepository = $torrentFacetedRepository;
     }
-
     /**
      * Display a listing of the RSS resource.
      *
@@ -57,7 +50,6 @@ class RssController extends Controller
             'public_rss' => $public_rss,
         ]);
     }
-
     /**
      * Show the form for creating a new RSS resource.
      *
@@ -77,7 +69,6 @@ class RssController extends Controller
             'resolutions'        => Resolution::all()->sortBy('position'),
             'user'               => $user, ]);
     }
-
     /**
      * Store a newly created RSS resource in storage.
      *
@@ -132,7 +123,6 @@ class RssController extends Controller
         return \redirect()->route('staff.rss.index')
             ->withSuccess($success);
     }
-
     /**
      * Show the form for editing the specified RSS resource.
      *
@@ -156,7 +146,6 @@ class RssController extends Controller
             'rss'                => $rss,
         ]);
     }
-
     /**
      * Update the specified RSS resource in storage.
      *
@@ -211,7 +200,6 @@ class RssController extends Controller
         return \redirect()->route('staff.rss.index')
             ->withSuccess($success);
     }
-
     /**
      * Remove the specified RSS resource from storage.
      *

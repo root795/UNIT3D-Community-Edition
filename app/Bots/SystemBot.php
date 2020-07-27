@@ -29,8 +29,6 @@ class SystemBot
 {
     private $bot;
 
-    private $chat;
-
     private $target;
 
     private $type;
@@ -46,10 +44,9 @@ class SystemBot
      *
      * @param \App\Repositories\ChatRepository $chatRepository
      */
-    public function __construct(ChatRepository $chatRepository)
+    public function __construct(private ChatRepository $chat)
     {
         $bot = Bot::where('slug', '=', 'systembot')->firstOrFail();
-        $this->chat = $chatRepository;
         $this->bot = $bot;
     }
 

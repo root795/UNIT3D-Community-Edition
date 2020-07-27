@@ -27,32 +27,22 @@ use Illuminate\Console\Command;
  */
 class AutoNerdStat extends Command
 {
-    /**
-     * @var ChatRepository
-     */
-    private $chatRepository;
-
-    public function __construct(ChatRepository $chatRepository)
+    public function __construct(private ChatRepository $chatRepository)
     {
         parent::__construct();
-
-        $this->chatRepository = $chatRepository;
     }
-
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
     protected $signature = 'auto:nerdstat';
-
     /**
      * The console command description.
      *
      * @var string
      */
     protected $description = 'Automatically Posts Daily Nerd Stat To Shoutbox';
-
     /**
      * Execute the console command.
      *

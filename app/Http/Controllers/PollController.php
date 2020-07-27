@@ -26,20 +26,13 @@ use Illuminate\Http\Request;
 class PollController extends Controller
 {
     /**
-     * @var ChatRepository
-     */
-    private $chat;
-
-    /**
      * PollController Constructor.
      *
      * @param ChatRepository $chat
      */
-    public function __construct(ChatRepository $chat)
+    public function __construct(private ChatRepository $chat)
     {
-        $this->chat = $chat;
     }
-
     /**
      * Show All Polls.
      *
@@ -51,7 +44,6 @@ class PollController extends Controller
 
         return \view('poll.latest', ['polls' => $polls]);
     }
-
     /**
      * Show A Poll.
      *
@@ -73,7 +65,6 @@ class PollController extends Controller
 
         return \view('poll.show', ['poll' => $poll]);
     }
-
     /**
      * Vote On A Poll.
      *
@@ -114,7 +105,6 @@ class PollController extends Controller
         return \redirect()->route('poll_results', ['id' => $poll->id])
             ->withSuccess('Your vote has been counted.');
     }
-
     /**
      * Show A Polls Results.
      *

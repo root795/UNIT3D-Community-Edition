@@ -22,26 +22,6 @@ use App\Services\Clients\OmdbClient;
 class WishRepository implements WishInterface
 {
     /**
-     * @var Wish
-     */
-    private $wish;
-
-    /**
-     * @var User
-     */
-    private $user;
-
-    /**
-     * @var OmdbClient
-     */
-    private $omdbClient;
-
-    /**
-     * @var Torrent
-     */
-    private $torrent;
-
-    /**
      * WishRepository constructor.
      *
      * @param Wish                             $wish
@@ -49,14 +29,9 @@ class WishRepository implements WishInterface
      * @param \App\Services\Clients\OmdbClient $omdbClient
      * @param Torrent                          $torrent
      */
-    public function __construct(Wish $wish, User $user, OmdbClient $omdbClient, Torrent $torrent)
+    public function __construct(private Wish $wish, private User $user, private OmdbClient $omdbClient, private Torrent $torrent)
     {
-        $this->wish = $wish;
-        $this->user = $user;
-        $this->omdbClient = $omdbClient;
-        $this->torrent = $torrent;
     }
-
     /**
      * @param null $paginate
      *
@@ -66,7 +41,6 @@ class WishRepository implements WishInterface
     {
         return $paginate ? $this->wish->paginate($paginate) : $this->wish->all();
     }
-
     /**
      * @param array $data
      *
@@ -76,7 +50,6 @@ class WishRepository implements WishInterface
     {
         return $this->wish->create($data);
     }
-
     /**
      * @param $id
      *
@@ -86,7 +59,6 @@ class WishRepository implements WishInterface
     {
         return $this->wish->find($id);
     }
-
     /**
      * @param $title
      *
@@ -96,7 +68,6 @@ class WishRepository implements WishInterface
     {
         return $this->wish->where('title', '=', $title)->first();
     }
-
     /**
      * @param $uid
      * @param $id
@@ -110,7 +81,6 @@ class WishRepository implements WishInterface
             ->where('imdb', '=', $id)
             ->first();
     }
-
     /**
      * @param $id
      *
@@ -126,7 +96,6 @@ class WishRepository implements WishInterface
             ->where('status', '=', 1)
             ->first();
     }
-
     /**
      * @param $id
      *
@@ -147,7 +116,6 @@ class WishRepository implements WishInterface
 
         return $this->findById($id)->source ?? null;
     }
-
     /**
      * @param $uid
      *
@@ -157,7 +125,6 @@ class WishRepository implements WishInterface
     {
         return $this->user->find($uid)->wishes()->paginate(10);
     }
-
     /**
      * @param $id
      *
@@ -167,7 +134,6 @@ class WishRepository implements WishInterface
     {
         return $this->findById($id)->delete();
     }
-
     /**
      * @param $imdb
      *

@@ -38,20 +38,13 @@ use Illuminate\Support\Str;
 class TorrentController extends BaseController
 {
     /**
-     * @var ChatRepository
-     */
-    private $chatRepository;
-
-    /**
      * RequestController Constructor.
      *
      * @param \App\Repositories\ChatRepository $chatRepository
      */
-    public function __construct(ChatRepository $chatRepository)
+    public function __construct(private ChatRepository $chatRepository)
     {
-        $this->chatRepository = $chatRepository;
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -61,7 +54,6 @@ class TorrentController extends BaseController
     {
         return new TorrentsResource(Torrent::with(['category', 'type', 'tags'])->latest()->paginate());
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -266,7 +258,6 @@ class TorrentController extends BaseController
 
         return $this->sendResponse(\route('torrent.download.rsskey', ['id' => $torrent->id, 'rsskey' => \auth('api')->user()->rsskey]), 'Torrent uploaded successfully.');
     }
-
     /**
      * Display the specified resource.
      *
@@ -282,7 +273,6 @@ class TorrentController extends BaseController
 
         return new TorrentResource($torrent);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -295,7 +285,6 @@ class TorrentController extends BaseController
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -307,7 +296,6 @@ class TorrentController extends BaseController
     {
         //
     }
-
     /**
      * Uses Input's To Put Together A Search.
      *
@@ -491,7 +479,6 @@ class TorrentController extends BaseController
 
         return $this->sendResponse('404', 'No Torrents Found');
     }
-
     /**
      * Anonymize A Torrent Media Info.
      *

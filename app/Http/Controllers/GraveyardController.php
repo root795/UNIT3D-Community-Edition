@@ -26,20 +26,13 @@ use Illuminate\Support\Str;
 class GraveyardController extends Controller
 {
     /**
-     * @var TorrentFacetedRepository
-     */
-    private $torrentFacetedRepository;
-
-    /**
      * GraveyardController Constructor.
      *
      * @param \App\Repositories\TorrentFacetedRepository $torrentFacetedRepository
      */
-    public function __construct(TorrentFacetedRepository $torrentFacetedRepository)
+    public function __construct(private TorrentFacetedRepository $torrentFacetedRepository)
     {
-        $this->torrentFacetedRepository = $torrentFacetedRepository;
     }
-
     /**
      * Show The Graveyard.
      *
@@ -62,7 +55,6 @@ class GraveyardController extends Controller
             'deadcount'  => $deadcount,
         ]);
     }
-
     /**
      * Uses Input's To Put Together A Search.
      *
@@ -140,7 +132,6 @@ class GraveyardController extends Controller
             'torrents' => $torrents,
         ])->render();
     }
-
     /**
      * Resurrect A Torrent.
      *
@@ -185,7 +176,6 @@ class GraveyardController extends Controller
         return \redirect()->route('graveyard.index')
             ->withSuccess('Torrent Resurrection Complete! You will be rewarded automatically once seedtime requirements are met.');
     }
-
     /**
      * Cancel A Ressurection.
      *

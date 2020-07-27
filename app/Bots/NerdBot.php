@@ -32,8 +32,6 @@ class NerdBot
 {
     private $bot;
 
-    private $chat;
-
     private $target;
 
     private $type;
@@ -53,10 +51,9 @@ class NerdBot
      *
      * @param \App\Repositories\ChatRepository $chatRepository
      */
-    public function __construct(ChatRepository $chatRepository)
+    public function __construct(private ChatRepository $chat)
     {
         $bot = Bot::where('id', '=', '2')->firstOrFail();
-        $this->chat = $chatRepository;
         $this->bot = $bot;
         $this->expiresAt = Carbon::now()->addMinutes(60);
         $this->current = Carbon::now();

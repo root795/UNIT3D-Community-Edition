@@ -24,13 +24,6 @@ class FailedLogin extends Notification implements ShouldQueue
     use Queueable;
 
     /**
-     * The request IP address.
-     *
-     * @var string
-     */
-    public $ip;
-
-    /**
      * The Time.
      *
      * @var Carbon\Carbon
@@ -44,9 +37,8 @@ class FailedLogin extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($ip)
+    public function __construct(public $ip)
     {
-        $this->ip = $ip;
         $this->carbon = Carbon::now();
     }
 

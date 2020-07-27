@@ -37,27 +37,14 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     /**
-     * @var TaggedUserRepository
-     */
-    private $taggedUserRepository;
-
-    /**
-     * @var ChatRepository
-     */
-    private $chatRepository;
-
-    /**
      * ForumController Constructor.
      *
      * @param \App\Repositories\TaggedUserRepository $taggedUserRepository
      * @param \App\Repositories\ChatRepository       $chatRepository
      */
-    public function __construct(TaggedUserRepository $taggedUserRepository, ChatRepository $chatRepository)
+    public function __construct(private TaggedUserRepository $taggedUserRepository, private ChatRepository $chatRepository)
     {
-        $this->taggedUserRepository = $taggedUserRepository;
-        $this->chatRepository = $chatRepository;
     }
-
     /**
      * Store A New Post To A Topic.
      *
@@ -177,7 +164,6 @@ class PostController extends Controller
         return \redirect()->to($realUrl)
             ->withSuccess('Post Successfully Posted');
     }
-
     /**
      * Edit Post Form.
      *
@@ -200,7 +186,6 @@ class PostController extends Controller
             'category' => $category,
         ]);
     }
-
     /**
      * Edit A Post In A Topic.
      *
@@ -222,7 +207,6 @@ class PostController extends Controller
         return \redirect()->to($postUrl)
             ->withSuccess('Post Successfully Edited!');
     }
-
     /**
      * Delete A Post.
      *
