@@ -7,7 +7,7 @@
 <hr>
 
 <p align="center">
-<a href="http://laravel.com"><img src="https://img.shields.io/badge/Laravel-6-f4645f.svg?style=flat-square" /></a> 
+<a href="http://laravel.com"><img src="https://img.shields.io/badge/Laravel-7-f4645f.svg?style=flat-square" /></a> 
 <a href="https://github.com/HDInnovations/UNIT3D/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-AGPL%20v3.0-yellow.svg?style=flat-square" /></a>
 <a href="https://travis-ci.org/HDInnovations/UNIT3D-Community-Edition?utm_medium=notification&utm_source=github_status"><img src="https://travis-ci.org/HDInnovations/UNIT3D-Community-Edition.svg?branch=master" /></a> 
 <a href="https://github.styleci.io/repos/113471037"><img src="https://github.styleci.io/repos/113471037/shield?branch=master" alt="StyleCI"></a>
@@ -140,6 +140,7 @@ Here are some packages that are built for UNIT3D.
 ## <a name="versions"></a> 🚨 Version Support Information
  Version     | Status                   | PHP Version Required
 :------------|:-------------------------|:------------
+ 2.7.x       |  Active Support :rocket: | >= 7.4
  2.6.x       |  Active Support :rocket: | >= 7.4
  2.5.x       |  End Of Life :skull: | >= 7.4
  2.4.x       |  End Of Life :skull: | >= 7.4
