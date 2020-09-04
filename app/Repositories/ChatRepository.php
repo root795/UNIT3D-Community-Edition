@@ -32,14 +32,17 @@ class ChatRepository
     public function __construct(private Message $message, private Chatroom $chatroom, private ChatStatus $chatStatus, private User $user, private Bot $bot, private UserEcho $echo, private UserAudible $audible)
     {
     }
+
     public function config()
     {
         return \config('chat');
     }
+
     public function bots()
     {
         return $this->bot->all();
     }
+
     public function echoes($user_id)
     {
         return $this->echo->with([
@@ -53,6 +56,7 @@ class ChatRepository
             ->orderBy('id', 'asc')
             ->get();
     }
+
     public function audibles($user_id)
     {
         return $this->audible->with([
@@ -66,14 +70,17 @@ class ChatRepository
             ->latest()
             ->get();
     }
+
     public function rooms()
     {
         return $this->chatroom->all();
     }
+
     public function roomFindOrFail($id)
     {
         return $this->chatroom->findOrFail($id);
     }
+
     public function ping($type, $id)
     {
         if ($type == 'room') {
@@ -85,6 +92,7 @@ class ChatRepository
 
         return true;
     }
+
     public function message($user_id, $room_id, $message, $receiver = null, $bot = null)
     {
         if ($this->user->find($user_id)->censor) {
@@ -107,6 +115,7 @@ class ChatRepository
 
         return $message;
     }
+
     public function botMessage($bot_id, $room_id, $message, $receiver = null)
     {
         $user = $this->user->find($receiver);
@@ -134,6 +143,7 @@ class ChatRepository
         \event(new Chatter('new.ping', $receiver, ['type' => 'bot', 'id' => $bot_id]));
         $message->delete();
     }
+
     public function privateMessage($user_id, $room_id, $message, $receiver = null, $bot = null, $ignore = null)
     {
         if ($this->user->find($user_id)->censor) {
@@ -168,6 +178,7 @@ class ChatRepository
 
         return $message;
     }
+
     public function deleteMessage($id)
     {
         $message = $this->message->find($id);
@@ -178,6 +189,7 @@ class ChatRepository
             return $message->delete();
         }
     }
+
     public function messages($room_id)
     {
         return $this->message->with([
@@ -194,6 +206,7 @@ class ChatRepository
             ->limit(\config('chat.message_limit'))
             ->get();
     }
+
     public function botMessages($sender_id, $bot_id)
     {
         $systemUserId = User::where('username', 'System')->firstOrFail()->id;
@@ -212,6 +225,7 @@ class ChatRepository
             ->limit(\config('chat.message_limit'))
             ->get();
     }
+
     public function privateMessages($sender_id, $target_id)
     {
         return $this->message->with([
@@ -228,6 +242,7 @@ class ChatRepository
             ->limit(\config('chat.message_limit'))
             ->get();
     }
+
     public function checkMessageLimits($room_id)
     {
         $messages = $this->messages($room_id)->toArray();
@@ -248,6 +263,7 @@ class ChatRepository
             }
         }
     }
+
     public function systemMessage($message, $bot = null)
     {
         $systemUserId = User::where('username', 'System')->first()->id;
@@ -262,6 +278,7 @@ class ChatRepository
 
         return $this;
     }
+
     public function systemChatroom($room = null)
     {
         $config = \config('chat.system_chatroom');
@@ -284,10 +301,12 @@ class ChatRepository
 
         return $room;
     }
+
     public function statuses()
     {
         return $this->chatStatus->all();
     }
+
     public function status($user)
     {
         if ($user instanceof User) {
@@ -300,10 +319,12 @@ class ChatRepository
 
         return $status;
     }
+
     public function statusFindOrFail($id)
     {
         return $this->chatStatus->findOrFail($id);
     }
+
     /**
      * @param $message
      *
@@ -325,6 +346,7 @@ class ChatRepository
 
         return $message;
     }
+
     protected function htmlifyMessage($message)
     {
         // Soon

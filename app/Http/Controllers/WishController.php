@@ -23,14 +23,10 @@ use Illuminate\Support\Str;
  */
 class WishController extends Controller
 {
-    /**
-     * WishController Constructor.
-     *
-     * @param WishInterface $wish
-     */
     public function __construct(private WishInterface $wish)
     {
     }
+
     /**
      * Get A Users Wishlist.
      *
@@ -53,6 +49,7 @@ class WishController extends Controller
             'route'              => 'wish',
         ]);
     }
+
     /**
      * Add New Wish.
      *
@@ -98,6 +95,7 @@ class WishController extends Controller
             ->route('wishes.index', ['username' => $user->username])
             ->withSuccess('Wish Successfully Added!');
     }
+
     /**
      * Delete A Wish.
      *

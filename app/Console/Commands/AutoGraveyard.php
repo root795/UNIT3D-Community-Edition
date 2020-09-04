@@ -31,18 +31,21 @@ class AutoGraveyard extends Command
     {
         parent::__construct();
     }
+
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
     protected $signature = 'auto:graveyard';
+
     /**
      * The console command description.
      *
      * @var string
      */
     protected $description = 'Automatically Checks Graveyard Records For Succesful Ressurections';
+
     /**
      * Execute the console command.
      *

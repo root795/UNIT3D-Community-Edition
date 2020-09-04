@@ -34,15 +34,10 @@ use Illuminate\Support\Facades\DB;
  */
 class BonusController extends Controller
 {
-    /**
-     * BonusController Constructor.
-     *
-     * @param \App\Interfaces\ByteUnitsInterface $byteUnits
-     * @param \App\Repositories\ChatRepository   $chatRepository
-     */
     public function __construct(protected \App\Interfaces\ByteUnitsInterface $byteUnits, private ChatRepository $chatRepository)
     {
     }
+
     /**
      * Show Bonus Gifts System.
      *
@@ -69,6 +64,7 @@ class BonusController extends Controller
             'gifts_received'    => $gifts_received,
         ]);
     }
+
     /**
      * Show Bonus Tips System.
      *
@@ -95,6 +91,7 @@ class BonusController extends Controller
             'tips_received'     => $tips_received,
         ]);
     }
+
     /**
      * Show Bonus Store System.
      *
@@ -124,6 +121,7 @@ class BonusController extends Controller
             'invite'            => $invite,
         ]);
     }
+
     /**
      * Show Bonus Gift System.
      *
@@ -140,6 +138,7 @@ class BonusController extends Controller
             'userbon'           => $userbon,
         ]);
     }
+
     /**
      * Show Bonus Earnings System.
      *
@@ -212,6 +211,7 @@ class BonusController extends Controller
             'second'            => $second,
         ]);
     }
+
     /**
      * Exchange Points For A Item.
      *
@@ -246,6 +246,7 @@ class BonusController extends Controller
         return \redirect()->route('bonus_store')
             ->withSuccess('Bonus Exchange Successful');
     }
+
     /**
      * Do Item Exchange.
      *
@@ -308,6 +309,7 @@ class BonusController extends Controller
 
         return true;
     }
+
     /**
      * Gift Points To A User.
      *
@@ -397,6 +399,7 @@ class BonusController extends Controller
         return \redirect()->route('bonus_store')
             ->withErrors('Unable to find specified user');
     }
+
     /**
      * Tip Points To A Uploader.
      *
@@ -447,6 +450,7 @@ class BonusController extends Controller
         return \redirect()->route('torrent', ['id' => $torrent->id])
             ->withSuccess('Your Tip Was Successfully Applied!');
     }
+
     /**
      * Tip Points To A Poster.
      *
@@ -499,6 +503,7 @@ class BonusController extends Controller
         return \redirect()->route('forum_topic', ['id' => $post->topic->id])
             ->withSuccess('Your Tip Was Successfully Applied!');
     }
+
     /**
      * @method getDyingCount
      *
@@ -519,6 +524,7 @@ class BonusController extends Controller
             ->where('peers.user_id', $user->id)
             ->count();
     }
+
     /**
      * @method getLegendaryCount
      *
@@ -539,6 +545,7 @@ class BonusController extends Controller
             ->where('peers.user_id', $user->id)
             ->count();
     }
+
     /**
      * @method getOldCount
      *
@@ -560,6 +567,7 @@ class BonusController extends Controller
             ->where('peers.user_id', $user->id)
             ->count();
     }
+
     /**
      * @method getHugeCount
      *
@@ -579,6 +587,7 @@ class BonusController extends Controller
             ->where('peers.user_id', $user->id)
             ->count();
     }
+
     /**
      * @method getLargeCount
      *
@@ -599,6 +608,7 @@ class BonusController extends Controller
             ->where('peers.user_id', $user->id)
             ->count();
     }
+
     /**
      * @method getRegularCount
      *
@@ -619,6 +629,7 @@ class BonusController extends Controller
             ->where('peers.user_id', $user->id)
             ->count();
     }
+
     /**
      * @method getParticipaintSeedCount
      *
@@ -639,6 +650,7 @@ class BonusController extends Controller
             ->where('history.user_id', $user->id)
             ->count();
     }
+
     /**
      * @method getParticipaintSeedCount
      *
@@ -659,6 +671,7 @@ class BonusController extends Controller
             ->where('history.user_id', $user->id)
             ->count();
     }
+
     /**
      * @method getParticipaintSeedCount
      *
@@ -679,6 +692,7 @@ class BonusController extends Controller
             ->where('history.user_id', $user->id)
             ->count();
     }
+
     /**
      * @method getParticipaintSeedCount
      *
@@ -699,6 +713,7 @@ class BonusController extends Controller
             ->where('history.user_id', $user->id)
             ->count();
     }
+
     /**
      * @method getParticipaintSeedCount
      *

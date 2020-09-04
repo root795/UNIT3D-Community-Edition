@@ -24,14 +24,10 @@ use App\Repositories\ChatRepository;
  */
 class PollController extends Controller
 {
-    /**
-     * PollController Constructor.
-     *
-     * @param \App\Repositories\ChatRepository $chatRepository
-     */
     public function __construct(private ChatRepository $chatRepository)
     {
     }
+
     /**
      * Display All Polls.
      *
@@ -43,6 +39,7 @@ class PollController extends Controller
 
         return \view('Staff.poll.index', ['polls' => $polls]);
     }
+
     /**
      * Show A Poll.
      *
@@ -56,6 +53,7 @@ class PollController extends Controller
 
         return \view('Staff.poll.show', ['poll' => $poll]);
     }
+
     /**
      * Poll Add Form.
      *
@@ -65,6 +63,7 @@ class PollController extends Controller
     {
         return \view('Staff.poll.create');
     }
+
     /**
      * Store A New Poll.
      *
@@ -90,6 +89,7 @@ class PollController extends Controller
         return \redirect()->route('staff.polls.index')
             ->withSuccess('Your poll has been created.');
     }
+
     /**
      * Poll Edit Form.
      *
@@ -103,6 +103,7 @@ class PollController extends Controller
 
         return \view('Staff.poll.edit', ['poll' => $poll]);
     }
+
     /**
      * Update A New Poll.
      *
@@ -162,6 +163,7 @@ class PollController extends Controller
         return \redirect()->route('staff.polls.index')
             ->withSuccess('Your poll has been edited.');
     }
+
     /**
      * Delete A Poll.
      *

@@ -39,15 +39,10 @@ use Illuminate\Support\Str;
  */
 class TopicController extends Controller
 {
-    /**
-     * ForumController Constructor.
-     *
-     * @param \App\Repositories\TaggedUserRepository $taggedUserRepository
-     * @param \App\Repositories\ChatRepository       $chatRepository
-     */
     public function __construct(private TaggedUserRepository $taggedUserRepository, private ChatRepository $chatRepository)
     {
     }
+
     /**
      * Show The Topic.
      *
@@ -98,6 +93,7 @@ class TopicController extends Controller
             'firstPost' => $firstPost,
         ]);
     }
+
     /**
      * Topic Add Form.
      *
@@ -123,6 +119,7 @@ class TopicController extends Controller
             'title'    => $request->input('title'),
         ]);
     }
+
     /**
      * Create A New Topic In The Forum.
      *
@@ -229,6 +226,7 @@ class TopicController extends Controller
         return \redirect()->route('forum_topic', ['id' => $topic->id])
                 ->withSuccess('Topic Created Successfully!');
     }
+
     /**
      * Topic Edit Form.
      *
@@ -243,6 +241,7 @@ class TopicController extends Controller
 
         return \view('forum.edit_topic', ['topic' => $topic, 'categories' => $categories]);
     }
+
     /**
      * Edit Topic In The Forum.
      *
@@ -266,6 +265,7 @@ class TopicController extends Controller
         return \redirect()->route('forum_topic', ['id' => $topic->id])
             ->withSuccess('Topic Successfully Edited');
     }
+
     /**
      * Close The Topic.
      *
@@ -286,6 +286,7 @@ class TopicController extends Controller
         return \redirect()->route('forum_topic', ['id' => $topic->id])
             ->withSuccess('This Topic Is Now Closed!');
     }
+
     /**
      * Open The Topic.
      *
@@ -306,6 +307,7 @@ class TopicController extends Controller
         return \redirect()->route('forum_topic', ['id' => $topic->id])
             ->withSuccess('This Topic Is Now Open!');
     }
+
     /**
      * Delete The Topic and The Posts.
      *
@@ -329,6 +331,7 @@ class TopicController extends Controller
         return \redirect()->route('forums.show', ['id' => $topic->forum->id])
             ->withSuccess('This Topic Is Now Deleted!');
     }
+
     /**
      * Pin The Topic.
      *
@@ -345,6 +348,7 @@ class TopicController extends Controller
         return \redirect()->route('forum_topic', ['id' => $topic->id])
             ->withSuccess('This Topic Is Now Pinned!');
     }
+
     /**
      * Unpin The Topic.
      *

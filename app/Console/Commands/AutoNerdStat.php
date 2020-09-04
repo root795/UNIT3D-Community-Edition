@@ -31,18 +31,21 @@ class AutoNerdStat extends Command
     {
         parent::__construct();
     }
+
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
     protected $signature = 'auto:nerdstat';
+
     /**
      * The console command description.
      *
      * @var string
      */
     protected $description = 'Automatically Posts Daily Nerd Stat To Shoutbox';
+
     /**
      * Execute the console command.
      *

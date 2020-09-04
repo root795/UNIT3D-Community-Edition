@@ -23,6 +23,7 @@ class AchievementUnlocked
     public function __construct(private ChatRepository $chat)
     {
     }
+
     /**
      * Handle the event.
      *

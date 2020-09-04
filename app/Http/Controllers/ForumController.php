@@ -25,15 +25,10 @@ use Illuminate\Http\Request;
  */
 class ForumController extends Controller
 {
-    /**
-     * ForumController Constructor.
-     *
-     * @param \App\Repositories\TaggedUserRepository $taggedUserRepository
-     * @param \App\Repositories\ChatRepository       $chatRepository
-     */
     public function __construct(private TaggedUserRepository $taggedUserRepository, private ChatRepository $chatRepository)
     {
     }
+
     /**
      * Search For Topics.
      *
@@ -170,6 +165,7 @@ class ForumController extends Controller
             'params'     => $params,
         ]);
     }
+
     /**
      * Search For Subscribed Forums & Topics.
      *
@@ -224,6 +220,7 @@ class ForumController extends Controller
             'topic_neos' => $topic_neos,
         ]);
     }
+
     /**
      * Latest Topics.
      *
@@ -257,6 +254,7 @@ class ForumController extends Controller
             'num_topics' => $num_topics,
         ]);
     }
+
     /**
      * Latest Posts.
      *
@@ -290,6 +288,7 @@ class ForumController extends Controller
             'num_topics' => $num_topics,
         ]);
     }
+
     /**
      * Show All Forums.
      *
@@ -313,6 +312,7 @@ class ForumController extends Controller
             'num_topics' => $num_topics,
         ]);
     }
+
     /**
      * Show Forums And Topics Inside.
      *

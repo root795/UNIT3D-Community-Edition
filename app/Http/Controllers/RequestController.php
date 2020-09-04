@@ -45,15 +45,10 @@ use MarcReichel\IGDBLaravel\Models\Game;
  */
 class RequestController extends Controller
 {
-    /**
-     * RequestController Constructor.
-     *
-     * @param \App\Repositories\RequestFacetedRepository $requestFacetedRepository
-     * @param \App\Repositories\ChatRepository           $chatRepository
-     */
     public function __construct(private RequestFacetedRepository $requestFacetedRepository, private ChatRepository $chatRepository)
     {
     }
+
     /**
      * Displays Requests List View.
      *
@@ -87,6 +82,7 @@ class RequestController extends Controller
             'bounties'         => $bounties,
         ]);
     }
+
     /**
      * Uses Input's To Put Together A Search.
      *
@@ -208,6 +204,7 @@ class RequestController extends Controller
             'torrentRequests' => $torrentRequests,
         ])->render();
     }
+
     /**
      * Display The Torrent Request.
      *
@@ -258,6 +255,7 @@ class RequestController extends Controller
             'torrentRequestClaim' => $torrentRequestClaim,
         ]);
     }
+
     /**
      * Torrent Request Add Form.
      *
@@ -282,6 +280,7 @@ class RequestController extends Controller
             'tmdb'        => $tmdb,
         ]);
     }
+
     /**
      * Store A New Torrent Request.
      *
@@ -362,6 +361,7 @@ class RequestController extends Controller
         return \redirect()->route('requests')
             ->withSuccess('Request Added.');
     }
+
     /**
      * Torrent Request Edit Form.
      *
@@ -382,6 +382,7 @@ class RequestController extends Controller
             'user'           => $user,
             'torrentRequest' => $torrentRequest, ]);
     }
+
     /**
      * Edit A Torrent Request.
      *
@@ -444,6 +445,7 @@ class RequestController extends Controller
         return \redirect()->route('requests', ['id' => $torrentRequest->id])
             ->withSuccess('Request Edited Successfully.');
     }
+
     /**
      * Add Bounty To A Torrent Request.
      *
@@ -507,6 +509,7 @@ class RequestController extends Controller
         return \redirect()->route('request', ['id' => $request->input('request_id')])
             ->withSuccess('Your bonus has been successfully added.');
     }
+
     /**
      * Fill A Torrent Request.
      *
@@ -553,6 +556,7 @@ class RequestController extends Controller
         return \redirect()->route('request', ['id' => $request->input('request_id')])
             ->withSuccess('Your request fill is pending approval by the Requester.');
     }
+
     /**
      * Approve A Torrent Request.
      *
@@ -629,6 +633,7 @@ class RequestController extends Controller
         return \redirect()->route('request', ['id' => $id])
                 ->withErrors("You don't have access to approve this request");
     }
+
     /**
      * Reject A Torrent Request.
      *
@@ -666,6 +671,7 @@ class RequestController extends Controller
         return \redirect()->route('request', ['id' => $id])
             ->withSuccess("You don't have access to approve this request");
     }
+
     /**
      * Delete A Torrent Request.
      *
@@ -692,6 +698,7 @@ class RequestController extends Controller
         return \redirect()->route('request', ['id' => $id])
             ->withErrors("You don't have access to delete this request.");
     }
+
     /**
      * Claim A Torrent Request.
      *
@@ -729,6 +736,7 @@ class RequestController extends Controller
         return \redirect()->route('request', ['id' => $id])
             ->withErrors('Someone else has already claimed this request buddy.');
     }
+
     /**
      * Uncliam A Torrent Request.
      *
@@ -769,6 +777,7 @@ class RequestController extends Controller
         return \redirect()->route('request', ['id' => $id])
             ->withErrors('Nothing To Unclaim.');
     }
+
     /**
      * Resets the filled and approved attributes on a given request.
      *

@@ -26,14 +26,10 @@ use Illuminate\Http\Request;
  */
 class ModerationController extends Controller
 {
-    /**
-     * ModerationController Constructor.
-     *
-     * @param \App\Repositories\ChatRepository $chatRepository
-     */
     public function __construct(private ChatRepository $chatRepository)
     {
     }
+
     /**
      * Torrent Moderation Panel.
      *
@@ -53,6 +49,7 @@ class ModerationController extends Controller
             'rejected'  => $rejected,
         ]);
     }
+
     /**
      * Approve A Torrent.
      *
@@ -91,6 +88,7 @@ class ModerationController extends Controller
         return \redirect()->route('staff.moderation.index')
             ->withErrors('Torrent Already Approved');
     }
+
     /**
      * Postpone A Torrent.
      *
@@ -127,6 +125,7 @@ class ModerationController extends Controller
         return \redirect()->route('staff.moderation.index')
             ->withSuccess('Torrent Postponed');
     }
+
     /**
      * Reject A Torrent.
      *

@@ -26,14 +26,10 @@ use Carbon\Carbon;
  */
 class FlushController extends Controller
 {
-    /**
-     * ChatController Constructor.
-     *
-     * @param \App\Repositories\ChatRepository $chatRepository
-     */
     public function __construct(private ChatRepository $chatRepository)
     {
     }
+
     /**
      * Flsuh All Old Peers From Database.
      *
@@ -58,6 +54,7 @@ class FlushController extends Controller
         return \redirect()->route('staff.dashboard.index')
             ->withSuccess('Ghost Peers Have Been Flushed');
     }
+
     /**
      * Flush All Chat Messages.
      *

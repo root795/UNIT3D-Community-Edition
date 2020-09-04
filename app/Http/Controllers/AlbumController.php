@@ -25,14 +25,10 @@ use Intervention\Image\Facades\Image;
  */
 class AlbumController extends Controller
 {
-    /**
-     * AlbumController Constructor.
-     *
-     * @param \App\Services\Clients\OmdbClient $omdbClient
-     */
     public function __construct(private OmdbClient $omdbClient)
     {
     }
+
     /**
      * Display All Albums.
      *
@@ -44,6 +40,7 @@ class AlbumController extends Controller
 
         return \view('album.index')->with('albums', $albums);
     }
+
     /**
      * Show Album Create Form.
      *
@@ -53,6 +50,7 @@ class AlbumController extends Controller
     {
         return \view('album.create');
     }
+
     /**
      * Store A New Album.
      *
@@ -100,6 +98,7 @@ class AlbumController extends Controller
         return \redirect()->route('albums.show', ['id' => $album->id])
             ->withSuccess('Your album has successfully published!');
     }
+
     /**
      * Show A Album.
      *
@@ -114,6 +113,7 @@ class AlbumController extends Controller
 
         return \view('album.show', ['album' => $album, 'albums' => $albums]);
     }
+
     /**
      * Delete A Album.
      *

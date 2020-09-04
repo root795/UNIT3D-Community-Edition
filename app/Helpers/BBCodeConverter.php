@@ -16,6 +16,7 @@ namespace App\Helpers;
 class BBCodeConverter
 {
     public $id;
+
     /**
      * @brief Constructor.
      *
@@ -24,6 +25,7 @@ class BBCodeConverter
     public function __construct(public $text)
     {
     }
+
     /**
      * @brief Replaces BBCode size.
      */
@@ -36,6 +38,7 @@ class BBCodeConverter
             $this->text
         );
     }
+
     /**
      * @brief Replaces BBCode center.
      */
@@ -48,6 +51,7 @@ class BBCodeConverter
             $this->text
         );
     }
+
     /**
      * @brief Replaces BBCode bold.
      */
@@ -60,6 +64,7 @@ class BBCodeConverter
             $this->text
         );
     }
+
     /**
      * @brief Replaces BBCode italic.
      */
@@ -72,6 +77,7 @@ class BBCodeConverter
             $this->text
         );
     }
+
     /**
      * @brief Replaces BBCode underline. Hoedown support underline.
      */
@@ -84,6 +90,7 @@ class BBCodeConverter
             $this->text
         );
     }
+
     /**
      * @brief Replaces BBCode strikethrough.
      */
@@ -96,6 +103,7 @@ class BBCodeConverter
             $this->text
         );
     }
+
     /**
      * @brief Replaces BBCode lists.
      */
@@ -141,6 +149,7 @@ class BBCodeConverter
             $this->text
         );
     }
+
     /**
      * @brief Replaces BBCode tables.
      */
@@ -190,6 +199,7 @@ class BBCodeConverter
             return \implode("\n", \array_merge($headers, $rows))."\n";
         }, $this->text);
     }
+
     /**
      * @brief Replaces BBCode urls.
      */
@@ -208,6 +218,7 @@ class BBCodeConverter
             $this->text
         );
     }
+
     /**
      * @brief Replaces BBCode images.
      */
@@ -220,6 +231,7 @@ class BBCodeConverter
             $this->text
         );
     }
+
     /**
      * @brief Replaces BBCode images.
      */
@@ -232,6 +244,7 @@ class BBCodeConverter
             $this->text
         );
     }
+
     /**
      * @brief Replaces BBCode quotes.
      */
@@ -252,6 +265,7 @@ class BBCodeConverter
             $this->text
         );
     }
+
     /**
      * @brief Replaces BBCode snippets.
      */
@@ -298,6 +312,7 @@ class BBCodeConverter
             $this->text
         );
     }
+
     /**
      * @brief Replace BBCode spoiler.
      */
@@ -310,6 +325,7 @@ class BBCodeConverter
             $this->text
         );
     }
+
     /**
      * @brief Replace BBCode color.
      */
@@ -322,6 +338,7 @@ class BBCodeConverter
             $this->text
         );
     }
+
     /**
      * @brief Replace BBCode Video.
      */
@@ -334,6 +351,7 @@ class BBCodeConverter
             $this->text
         );
     }
+
     /**
      * @brief Replace BBCode Youtube.
      */
@@ -346,6 +364,7 @@ class BBCodeConverter
             $this->text
         );
     }
+
     /**
      * @brief Replace BBCode Alert.
      */
@@ -358,6 +377,7 @@ class BBCodeConverter
             $this->text
         );
     }
+
     /**
      * @brief Replace BBCode Note.
      */
@@ -370,6 +390,7 @@ class BBCodeConverter
             $this->text
         );
     }
+
     /**
      * @brief Converts the provided BBCode text to an equivalent Markdown text.
      */

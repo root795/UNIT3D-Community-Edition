@@ -24,14 +24,10 @@ use Illuminate\Http\Request;
  */
 class ReportController extends Controller
 {
-    /**
-     * ReportController Constructor.
-     *
-     * @param Report $report
-     */
     public function __construct(private Report $report)
     {
     }
+
     /**
      * Create A Request Report.
      *
@@ -68,6 +64,7 @@ class ReportController extends Controller
         return \redirect()->route('request', ['id' => $id])
             ->withSuccess('Your report has been successfully sent');
     }
+
     /**
      * Create A Torrent Report.
      *
@@ -104,6 +101,7 @@ class ReportController extends Controller
         return \redirect()->route('torrent', ['id' => $id])
             ->withSuccess('Your report has been successfully sent');
     }
+
     /**
      * Create A User Report.
      *

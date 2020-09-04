@@ -56,26 +56,28 @@ use MarcReichel\IGDBLaravel\Models\Game;
  */
 class TorrentController extends Controller
 {
-    /**
-     * @var int
-     */
     private const PAGE = 0;
+
     /**
      * @var string
      */
     private const SORTING = 'created_at';
+
     /**
      * @var int
      */
     private const DIRECTION = 2;
+
     /**
      * @var string
      */
     private const ORDER = 'desc';
+
     /**
      * @var int
      */
     private const QTY = 25;
+
     /**
      * RequestController Constructor.
      *
@@ -85,6 +87,7 @@ class TorrentController extends Controller
     public function __construct(private TorrentFacetedRepository $torrentFacetedRepository, private ChatRepository $chatRepository)
     {
     }
+
     /**
      * Displays Torrent List View.
      *
@@ -97,7 +100,7 @@ class TorrentController extends Controller
         $user = $request->user();
         $repository = $this->torrentFacetedRepository;
 
-        $torrents = Torrent::with(['user:id,username', 'category', 'type', 'tags'])
+        $torrents = Torrent::with(['user:id,username', 'category', 'type', 'tags', 'subtitles'])
             ->withCount(['thanks', 'comments'])
             ->orderBy('sticky', 'desc')
             ->orderBy('created_at', 'desc')
@@ -116,6 +119,7 @@ class TorrentController extends Controller
             'links'              => null,
         ]);
     }
+
     /**
      * Torrent Similar Results.
      *
@@ -147,6 +151,7 @@ class TorrentController extends Controller
             'tmdb'               => $tmdb,
         ]);
     }
+
     /**
      * Displays Torrent Cards View.
      *
@@ -194,6 +199,7 @@ class TorrentController extends Controller
             'repository' => $repository,
         ]);
     }
+
     /**
      * Torrent Filter Remember Setting.
      *
@@ -214,6 +220,7 @@ class TorrentController extends Controller
             }
         }
     }
+
     /**
      * Torrent Grouping.
      *
@@ -335,6 +342,7 @@ class TorrentController extends Controller
             'bookmarks'          => $bookmarks,
         ])->render();
     }
+
     /**
      * Uses Input's To Put Together A Search.
      *
@@ -857,6 +865,7 @@ class TorrentController extends Controller
             'bookmarks'          => $bookmarks,
         ])->render();
     }
+
     /**
      * Anonymize A Torrent Media Info.
      *
@@ -884,6 +893,7 @@ class TorrentController extends Controller
 
         return $mediainfo;
     }
+
     /**
      * Display The Torrent.
      *
@@ -988,6 +998,7 @@ class TorrentController extends Controller
             'playlists'          => $playlists,
         ]);
     }
+
     /**
      * Torrent Edit Form.
      *
@@ -1010,6 +1021,7 @@ class TorrentController extends Controller
             'torrent'     => $torrent,
         ]);
     }
+
     /**
      * Edit A Torrent.
      *
@@ -1100,6 +1112,7 @@ class TorrentController extends Controller
         return \redirect()->route('torrent', ['id' => $torrent->id])
             ->withSuccess('Successfully Edited!');
     }
+
     /**
      * Delete A Torrent.
      *
@@ -1177,6 +1190,7 @@ class TorrentController extends Controller
                 ->withErrors('Unable to delete Torrent');
         }
     }
+
     /**
      * Display Peers Of A Torrent.
      *
@@ -1191,6 +1205,7 @@ class TorrentController extends Controller
 
         return \view('torrent.peers', ['torrent' => $torrent, 'peers' => $peers]);
     }
+
     /**
      * Display History Of A Torrent.
      *
@@ -1205,6 +1220,7 @@ class TorrentController extends Controller
 
         return \view('torrent.history', ['torrent' => $torrent, 'history' => $history]);
     }
+
     /**
      * Torrent Upload Form.
      *
@@ -1231,6 +1247,7 @@ class TorrentController extends Controller
             'tmdb'        => $tmdb,
         ]);
     }
+
     /**
      * Upload A Torrent.
      *
@@ -1403,6 +1420,7 @@ class TorrentController extends Controller
         return \redirect()->route('download_check', ['id' => $torrent->id])
             ->withSuccess('Your torrent file is ready to be downloaded and seeded!');
     }
+
     /**
      * Download Check.
      *
@@ -1418,6 +1436,7 @@ class TorrentController extends Controller
 
         return \view('torrent.download_check', ['torrent' => $torrent, 'user' => $user]);
     }
+
     /**
      * Download A Torrent.
      *
@@ -1482,6 +1501,7 @@ class TorrentController extends Controller
 
         return \response()->download(\getcwd().'/files/tmp/'.$tmpFileName)->deleteFileAfterSend(true);
     }
+
     /**
      * Bump A Torrent.
      *
@@ -1519,6 +1539,7 @@ class TorrentController extends Controller
         return \redirect()->route('torrent', ['id' => $torrent->id])
             ->withSuccess('Torrent Has Been Bumped To The Top Successfully!');
     }
+
     /**
      * Sticky A Torrent.
      *
@@ -1539,6 +1560,7 @@ class TorrentController extends Controller
         return \redirect()->route('torrent', ['id' => $torrent->id])
             ->withSuccess('Torrent Sticky Status Has Been Adjusted!');
     }
+
     /**
      * 100% Freeleech A Torrent.
      *
@@ -1574,6 +1596,7 @@ class TorrentController extends Controller
         return \redirect()->route('torrent', ['id' => $torrent->id])
             ->withSuccess('Torrent FL Has Been Adjusted!');
     }
+
     /**
      * Feature A Torrent.
      *
@@ -1613,6 +1636,7 @@ class TorrentController extends Controller
         return \redirect()->route('torrent', ['id' => $torrent->id])
             ->withErrors('Torrent Is Already Featured!');
     }
+
     /**
      * Double Upload A Torrent.
      *
@@ -1646,6 +1670,7 @@ class TorrentController extends Controller
         return \redirect()->route('torrent', ['id' => $torrent->id])
             ->withSuccess('Torrent DoubleUpload Has Been Adjusted!');
     }
+
     /**
      * Reseed Request A Torrent.
      *
@@ -1681,6 +1706,7 @@ class TorrentController extends Controller
         return \redirect()->route('torrent', ['id' => $torrent->id])
             ->withErrors('This torrent doesnt meet the rules for a reseed request.');
     }
+
     /**
      * Use Freeleech Token On A Torrent.
      *

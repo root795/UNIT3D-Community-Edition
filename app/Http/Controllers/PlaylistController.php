@@ -26,14 +26,10 @@ use Intervention\Image\Facades\Image;
  */
 class PlaylistController extends Controller
 {
-    /**
-     * PlaylistController Constructor.
-     *
-     * @param \App\Repositories\ChatRepository $chatRepository
-     */
     public function __construct(private ChatRepository $chatRepository)
     {
     }
+
     /**
      * Display All Playlists.
      *
@@ -45,6 +41,7 @@ class PlaylistController extends Controller
 
         return \view('playlist.index', ['playlists' => $playlists]);
     }
+
     /**
      * Show Playlist Create Form.
      *
@@ -54,6 +51,7 @@ class PlaylistController extends Controller
     {
         return \view('playlist.create');
     }
+
     /**
      * Store A New Playlist.
      *
@@ -106,6 +104,7 @@ class PlaylistController extends Controller
         return \redirect()->route('playlists.show', ['id' => $playlist->id])
             ->withSuccess('Your Playlist Was Created Successfully!');
     }
+
     /**
      * Show A Playlist.
      *
@@ -144,6 +143,7 @@ class PlaylistController extends Controller
 
         return \view('playlist.show', ['playlist' => $playlist, 'meta' => $meta, 'torrents' => $torrents]);
     }
+
     /**
      * Show Playlist Update Form.
      *
@@ -160,6 +160,7 @@ class PlaylistController extends Controller
 
         return \view('playlist.edit', ['playlist' => $playlist]);
     }
+
     /**
      * Update A Playlist.
      *
@@ -206,6 +207,7 @@ class PlaylistController extends Controller
         return \redirect()->route('playlists.show', ['id' => $playlist->id])
             ->withSuccess('Your Playlist Has Successfully Been Updated!');
     }
+
     /**
      * Delete A Playlist.
      *

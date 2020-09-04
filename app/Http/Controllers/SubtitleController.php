@@ -36,14 +36,10 @@ use Illuminate\Support\Facades\Storage;
 
 class SubtitleController extends Controller
 {
-    /**
-     * SubtitleController Constructor.
-     *
-     * @param \App\Repositories\ChatRepository $chatRepository
-     */
     public function __construct(private ChatRepository $chatRepository)
     {
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -57,6 +53,7 @@ class SubtitleController extends Controller
 
         return \view('subtitle.index', ['subtitles' => $subtitles, 'media_languages' => $media_languages, 'categories' => $categories]);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -71,6 +68,7 @@ class SubtitleController extends Controller
 
         return \view('subtitle.create', ['torrent' => $torrent, 'media_languages' => $media_languages]);
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -150,6 +148,7 @@ class SubtitleController extends Controller
         return \redirect()->route('torrent', ['id' => $request->input('torrent_id')])
             ->withSuccess('Subtitle Successfully Added');
     }
+
     /**
      * Update the specified resource in storage.
      *
@@ -181,6 +180,7 @@ class SubtitleController extends Controller
         return \redirect()->route('torrent', ['id' => $request->input('torrent_id')])
             ->withSuccess('Subtitle Successfully Updated');
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -207,6 +207,7 @@ class SubtitleController extends Controller
         return \redirect()->route('torrent', ['id' => $request->input('torrent_id')])
             ->withSuccess('Subtitle Successfully Deleted');
     }
+
     /**
      * Download the specified resource from storage.
      *
@@ -236,6 +237,7 @@ class SubtitleController extends Controller
 
         return Storage::disk('subtitles')->download($subtitle->file_name, $temp_filename, $headers);
     }
+
     /**
      * Uses Input's To Put Together A Search.
      *

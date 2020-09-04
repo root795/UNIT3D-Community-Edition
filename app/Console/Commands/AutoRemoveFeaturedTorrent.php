@@ -28,18 +28,21 @@ class AutoRemoveFeaturedTorrent extends Command
     {
         parent::__construct();
     }
+
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
     protected $signature = 'auto:remove_featured_torrent';
+
     /**
      * The console command description.
      *
      * @var string
      */
     protected $description = 'Automatically Removes Featured Torrents If Expired';
+
     /**
      * Execute the console command.
      *

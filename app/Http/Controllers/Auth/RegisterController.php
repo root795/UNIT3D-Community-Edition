@@ -30,14 +30,10 @@ use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
-    /**
-     * RegisterController Constructor.
-     *
-     * @param \App\Repositories\ChatRepository $chatRepository
-     */
     public function __construct(private ChatRepository $chatRepository)
     {
     }
+
     /**
      * Registration Form.
      *
@@ -61,6 +57,7 @@ class RegisterController extends Controller
 
         return \view('auth.register', ['code' => $code]);
     }
+
     public function register(Request $request, $code = null)
     {
         // Make sure open reg is off and invite code exist and has not been used already

@@ -23,14 +23,10 @@ use Illuminate\Http\Request;
  */
 class ChatStatusController extends Controller
 {
-    /**
-     * ChatController Constructor.
-     *
-     * @param \App\Repositories\ChatRepository $chatRepository
-     */
     public function __construct(private ChatRepository $chatRepository)
     {
     }
+
     /**
      * Chat Management.
      *
@@ -44,6 +40,7 @@ class ChatStatusController extends Controller
             'chatstatuses' => $chatstatuses,
         ]);
     }
+
     /**
      * Store A New Chat Status.
      *
@@ -73,6 +70,7 @@ class ChatStatusController extends Controller
         return \redirect()->route('staff.statuses.index')
             ->withSuccess('Chat Status Successfully Added');
     }
+
     /**
      * Update A Chat Status.
      *
@@ -103,6 +101,7 @@ class ChatStatusController extends Controller
         return \redirect()->route('staff.statuses.index')
             ->withSuccess('Chat Status Successfully Modified');
     }
+
     /**
      * Delete A Chat Status.
      *
