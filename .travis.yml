@@ -1,7 +1,7 @@
 language: php
 
 php:
-  - '8.0'
+  - 'nightly'
 
 addons:
   mariadb: '10.3'
